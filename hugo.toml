@@ -1,0 +1,181 @@
+baseURL = 'https://isaaclins.com/ipa'
+languageCode = 'de-ch'
+title = 'VORLAGE FÜR INDIVIDUELLE PRAKTISCHE ARBEIT'
+enableGitInfo = true 
+enableRobotsTXT = false
+# This is for the file generation of the arbeitsjournal, for it to work and publish the sites for future dates.
+buildFuture = true 
+# RSS & sitemap not needed? disable it.
+disableKinds = ['RSS', 'sitemap']
+
+# Automatically derive section order from filename prefixes
+# No manual weight maintenance required
+[frontmatter]
+  date = ['date', 'publishDate', 'lastmod']
+
+# custom Goldmark Markdown Renderer Configuration
+[markup]
+  defaultMarkdownHandler = 'goldmark'
+  
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      linkifyProtocol = 'https'
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      autoHeadingIDType = 'github'
+      
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+    
+    [markup.goldmark.renderer]
+      # Allow raw HTML in Markdown for advanced formatting
+      unsafe = true
+  
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = false
+    noClasses = false
+    style = 'monokai'
+    tabWidth = 4
+
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 4
+    ordered = true
+
+# Output Format Definitions
+[outputs]
+  home = ['HTML']
+  section = ['HTML']
+  page = ['HTML']
+
+# Custom output format for PDF compilation
+[outputFormats]
+  [outputFormats.PDF]
+    baseName = 'print'
+    isHTML = true
+    mediaType = 'text/html'
+    path = 'pdf'
+    permalinkable = false
+
+# Taxonomy Configuration
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+# ============================================================================
+# Menu Configuration
+# ============================================================================
+# Navigation is generated dynamically from content sections (sorted by weight).
+# No manual menu entries needed — just add a new folder under content/ with an
+# _index.md that has a title and weight in its front matter.
+[params]
+  # IPA Metadata
+  thema = '%%IPA NAME HERE%%'
+  description = '%%IPA FROM AUTHOR HERE%%'
+  berufsschule = '%%SCHOOL HERE%%'
+
+  # Ausbildung
+  fachrichtung = '%%appli|plattform%%'
+  projektvorgehensmodell = '%%IPERKA|WASSERFALL|AGIL%%'
+  jahrgangKanton = '%%YYYY location%%'
+
+  # Daten
+  ausgabedatum = '%%ausgabedatum%%'
+  datumVon = '%%startdate%%'
+  datumBis = '%%enddate%%'
+
+  # Dokument-Metadaten
+  version = 'TEMPLATE'
+  dokumentname = '%%outputfile.pdf%%'
+  
+  # PDF Generation Settings THIS IS VERY IMPORTANT; CORE FUNCTIONALITY
+  enablePDF = true
+  
+  # Configurable paths (used in links, glossary, footer, etc.)
+  glossarPath = "glossar/"
+  pdfPath = "pdf/"
+  # Section names to exclude from ToC and main navigation
+  tocExcludedSections = ["pdf"]
+  
+  # Feature Toggles THIS IS VERY IMPORTANT; CORE FUNCTIONALITY
+  enableGlossary = true
+  enableMermaid = true
+
+  # KaTeX not needed
+  enableKaTeX = false
+  
+  # Date Format (Swiss German)
+  dateFormat = '2. January 2006'
+
+# Privacy Settings (GDPR Compliance) diable everything
+
+[privacy]
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.x]
+    disable = true
+  [privacy.youtube]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+# ============================================================================
+# Personen
+# ============================================================================
+
+[params.autor]
+  name = '%%AUTHOR NAME%%'
+  firma = '%%FIRMA NAME%%'
+  abteilung = '%%FIRMENABTEILUNG%%'
+  strasse = '%%LOCATION OF IPA%%'
+  plz = '%%PLZ%%'
+  ort = '%%CITY%%'
+  telefon = '%%PHONE NUMBER%%'
+  email = '%%EMAIL%%'
+
+[params.berufsbildner]
+  name = '%%BOSS NAME%%'
+  firma = '%%FIRMA NAME%%'
+  strasse = '%%LOCATION OF BOSS OFFICE%%'
+  plz = '%%PLZ OF BOSS OFFICE%%'
+  ort = '%%CITY OF BOSS OFFICE%%'
+  telefonMobile = '%%PHONE NUMBER OF BOSS%%'
+  telefonGeschaeft = '%% NUMBER OF BOSS OFFICE%%'
+  email = '%%EMAIL OF BOSS%%'
+
+[params.verantwortlicheFachkraft]
+  name = '%%SPECIALIST NAME%%'
+  firma = '%%FIRMA NAME%%'
+  strasse = '%%LOCATION OF SPECIALIST OFFICE%%'
+  plz = '%%PLZ OF SPECIALIST OFFICE%%'
+  ort = '%%CITY OF SPECIALIST OFFICE%%'
+  telefonMobile = '%%PHONE NUMBER OF SPECIALIST%%'
+  telefonGeschaeft = '%%OFFICE NUMBER OF SPECIALIST%%'
+  email = '%%EMAIL OF SPECIALIST%%'
+
+[params.hauptexperte]
+  name = '%%MAIN EXPERT NAME%%'
+  telefonMobile = '%%MAIN EXPERT MOBILE NUMBER%%'
+  telefonGeschaeft = '%%MAIN EXPERT OFFICE NUMBER%%'
+  email = '%%MAIN EXPERT EMAIL%%'
+
+[params.nebenexperte]
+  name = '%%SECONDARY EXPERT NAME%%'
+  telefonMobile = '%%SECONDARY EXPERT MOBILE NUMBER%%'
+  telefonGeschaeft = '%%SECONDARY EXPERT OFFICE NUMBER%%'
+  email = '%%SECONDARY EXPERT EMAIL%%'
+
+
+
