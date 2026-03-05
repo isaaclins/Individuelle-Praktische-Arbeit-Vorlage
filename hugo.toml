@@ -70,10 +70,7 @@ disableKinds = ['RSS', 'sitemap']
     path = 'pdf'
     permalinkable = false
 
-# Taxonomy Configuration
-[taxonomies]
-  tag = 'tags'
-  category = 'categories'
+
 
 # ============================================================================
 # Menu Configuration
