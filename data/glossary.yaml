@@ -1,0 +1,23 @@
+# ============================================================================
+# IPA Glossary Data File
+# This file contains all glossary terms used in the documentation.
+# Terms are automatically linked and displayed via the glossary shortcode.
+#
+# Entry Format:
+#   - id: unique-identifier (used for anchors, lowercase, no spaces)
+#     term: Display Term
+#     abbrev: Optional abbreviation (shown in parentheses)
+#     definition: Full definition text (supports markdown)
+#     link: Optional external link for more information
+#
+# Usage in content:
+#   {{< glossary "API" >}}
+#   {{< glossary "REST" >}}
+# ============================================================================
+
+- id: hugo
+  term: Hugo, static site generator
+  definition: |
+    Hugo ist ein statischer Site Generator, der es ermöglicht, Websites schnell und einfach zu erstellen.
+    Siehe mehr auf https://gohugo.io/.
+
