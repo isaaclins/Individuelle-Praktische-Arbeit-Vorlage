@@ -1,0 +1,28 @@
+{{- /*
+  Quellenverzeichnis Shortcode - Bibliography/Sources List
+
+  Usage:
+    {{< quellenverzeichnis >}}
+
+  Renders the bibliography from data/quellen.yaml, sorted by title.
+*/ -}}
+{{- if .Site.Data.quellen -}}
+<div class="quellenverzeichnis-content">
+  <ol class="quellen-list">
+    {{- range sort .Site.Data.quellen "titel" -}}
+    <li class="quellen-entry" id="quelle-{{ .id | urlize }}">
+      <span class="quellen-text">
+        {{- with .Autor }}{{ . }}{{ end -}}
+        {{- with .jahr }} ({{ . }}){{ end -}}
+        {{- with .titel }}. <em>{{ . }}</em>{{ end -}}
+        {{- with .verlag }}. {{ . }}{{ end -}}
+        {{- with .url }}. <a href="{{ . }}">{{ . }}</a>{{ end -}}
+        {{- with .zugriff }} [Zugriff: {{ . }}]{{ end -}}
+      </span>
+    </li>
+    {{- end -}}
+  </ol>
+</div>
+{{- else -}}
+<p class="verzeichnis-empty">Keine Quellen vorhanden.</p>
+{{- end -}}
