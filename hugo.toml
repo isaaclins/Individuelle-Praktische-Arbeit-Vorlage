@@ -6,7 +6,7 @@ enableRobotsTXT = false
 # This is for the file generation of the arbeitsjournal, for it to work and publish the sites for future dates.
 buildFuture = true 
 # RSS & sitemap not needed? disable it.
-disableKinds = ['RSS', 'sitemap']
+disableKinds = ['RSS', 'sitemap', 'taxonomy', 'term']
 
 # Automatically derive section order from filename prefixes
 # No manual weight maintenance required
