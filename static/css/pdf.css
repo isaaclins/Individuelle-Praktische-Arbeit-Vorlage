@@ -1,0 +1,810 @@
+/* ============================================================================
+   IPA Documentation Framework - PDF/Print Stylesheet
+   ============================================================================
+   This stylesheet provides paged media styles for PDF generation.
+   Uses CSS paged media specifications for academic document layout.
+   
+   Designed for:
+   - Print output via browser
+   - PDF generation via Pandoc/WeasyPrint/Prince
+   ============================================================================ */
+
+/* ============================================================================
+   Page Setup
+   ============================================================================ */
+
+
+/* ============================================================================
+   Base Styles for Print
+   ============================================================================ */
+   .pdf-document {
+    font-family: monospace;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* ============================================================================
+     Page Break Controls
+     ============================================================================ */
+  .pdf-section {
+    page-break-after: always;
+    break-after: page;
+  }
+  
+  .pdf-subsection {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  /* Prevent breaks after headings */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  
+  /* Keep with following content */
+  h1 + *, h2 + *, h3 + *, h4 + * {
+    page-break-before: avoid;
+    break-before: avoid;
+  }
+  
+  /* Avoid orphan lines */
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  /* ============================================================================
+     Titelblatt (Title Page)
+     ============================================================================ */
+  #titelblatt {
+    page: title;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 0;
+  }
+  
+  #titelblatt .titelblatt-content {
+    max-width: none;
+  }
+  
+  #titelblatt .titelblatt-header {
+    margin-bottom: 1cm;
+  }
+  
+  #titelblatt .document-type {
+    font-size: 12pt;
+    font-weight: normal;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #595959;
+  }
+  
+  #titelblatt .apprenticeship {
+    font-size: 10pt;
+    color: #595959;
+    margin-top: 0.3cm;
+  }
+  
+  #titelblatt .titelblatt-title {
+    margin-bottom: 1cm;
+  }
+  
+  #titelblatt .ipa-title {
+    font-size: 20pt;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 0.3cm;
+  }
+  
+  #titelblatt .ipa-subtitle {
+    font-size: 14pt;
+    font-weight: normal;
+    color: #595959;
+  }
+  
+  #titelblatt .meta-table {
+    margin: 0 auto;
+    width: auto;
+    border-collapse: collapse;
+    page-break-inside: avoid;
+  }
+  
+  #titelblatt .meta-table th,
+  #titelblatt .meta-table td {
+    border: thin solid #000;
+    padding: 0.15cm 0.5cm;
+    text-align: left;
+    font-size: 9pt;
+  }
+  
+  #titelblatt .meta-table th {
+    font-weight: bold;
+    width: 5.5cm;
+  }
+  
+  #titelblatt .meta-table tr:nth-child(odd) th,
+  #titelblatt .meta-table tr:nth-child(odd) td {
+    background-color: #dae5ec;
+  }
+  
+  #titelblatt .meta-table tr:nth-child(even) th,
+  #titelblatt .meta-table tr:nth-child(even) td {
+    background-color: #ffffff;
+  }
+  
+  /* ============================================================================
+     Table of Contents
+     ============================================================================ */
+  #toc {
+    page: title;
+  }
+  
+  #toc h1 {
+    font-size: 18pt;
+    text-align: center;
+    margin-bottom: 2cm;
+    page-break-after: avoid;
+  }
+  
+  .toc-content {
+    columns: 1;
+  }
+  
+  .toc-chapter {
+    margin-bottom: 0.8cm;
+  }
+  
+  .toc-chapter-link {
+    display: flex;
+    align-items: space-between;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 12pt;
+    font-family: monospace;
+  }
+  
+  .toc-subchapters {
+    list-style: none;
+    padding-left: 1cm;
+    margin: 0.3cm 0;
+  }
+  
+  .toc-subchapters li {
+    margin: 0.2cm 0;
+  }
+  
+  .toc-subchapters a {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+    color: #595959;
+    font-size: 11pt;
+  }
+  
+  .toc-num {
+    margin-right: 0.5cm;
+    width: 1.5cm;
+    display: inline-block;
+  }
+
+  .toc-leader {
+    flex: 1;
+    margin: 0 0.2cm;
+    transform: translateY(-0.2em);
+  }
+
+  .toc-page {
+    min-width: 1.8em;
+    text-align: right;
+  }
+  
+  /* ============================================================================
+     Chapter Title Pages
+     ============================================================================ */
+  .chapter .chapter-title-page {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .chapter-number {
+    margin-bottom: 2cm;
+  }
+  
+  .chapter-label {
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #595959;
+  }
+  
+  .chapter-num {
+    font-size: 72pt;
+    font-weight: bold;
+    color: #000;
+    line-height: 1;
+  }
+  
+  .chapter-title {
+    font-size: 24pt;
+    margin: 0;
+    string-set: chapter-title content();
+  }
+  
+  .chapter-description {
+    font-size: 12pt;
+    color: #595959;
+    max-width: 80%;
+    margin-top: 1cm;
+  }
+  
+  /* ============================================================================
+     Subchapters (depth-aware styling)
+     Each depth level gets progressively smaller, greyer, and lighter borders.
+     ============================================================================ */
+  .subchapter {
+    page-break-before: auto;
+  }
+  
+  .subchapter-content {
+    text-align: justify;
+  }
+
+  /* --- Depth 2 (e.g. 1.1) — primary subsection --- */
+  .depth-2 > .subchapter-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4cm;
+    margin-bottom: 0.8cm;
+    padding-bottom: 0.4cm;
+    border-bottom: 1.5pt solid #000;
+  }
+  .depth-2 > .subchapter-header .subchapter-number {
+    font-size: 18pt;
+    color: #333;
+  }
+  .depth-2 > .subchapter-header .subchapter-title {
+    font-size: 18pt;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+  }
+
+  /* --- Depth 3 (e.g. 1.1.1) — secondary subsection --- */
+  .depth-3 > .subchapter-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3cm;
+    margin-bottom: 0.5cm;
+    padding-bottom: 0.25cm;
+    border-bottom: 1pt solid #666;
+  }
+  .depth-3 > .subchapter-header .subchapter-number {
+    font-size: 14pt;
+    color: #555;
+  }
+  .depth-3 > .subchapter-header .subchapter-title {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #222;
+    margin: 0;
+  }
+
+  /* --- Depth 4 (e.g. 1.1.1.1) — tertiary subsection --- */
+  .depth-4 > .subchapter-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3cm;
+    margin-bottom: 0.3cm;
+    padding-bottom: 0.15cm;
+    border-bottom: 0.5pt solid #999;
+  }
+  .depth-4 > .subchapter-header .subchapter-number {
+    font-size: 12pt;
+    color: #777;
+  }
+  .depth-4 > .subchapter-header .subchapter-title {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #444;
+    margin: 0;
+  }
+
+  /* --- Depth 5 (e.g. 1.1.1.1.1) --- */
+  .depth-5 > .subchapter-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2cm;
+    margin-bottom: 0.2cm;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .depth-5 > .subchapter-header .subchapter-number {
+    font-size: 11pt;
+    color: #888;
+  }
+  .depth-5 > .subchapter-header .subchapter-title {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #555;
+    margin: 0;
+  }
+
+  /* --- Depth 6+ (e.g. 1.1.1.1.1.1) --- */
+  .depth-6 > .subchapter-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2cm;
+    margin-bottom: 0.15cm;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .depth-6 > .subchapter-header .subchapter-number {
+    font-size: 11pt;
+    color: #999;
+  }
+  .depth-6 > .subchapter-header .subchapter-title {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #666;
+    margin: 0;
+  }
+  
+  /* ============================================================================
+     Typography for Print
+     ============================================================================ */
+  h1 {
+    font-size: 18pt;
+    margin-top: 1cm;
+    margin-bottom: 0.5cm;
+  }
+  
+  h2 {
+    font-size: 14pt;
+    margin-top: 0.8cm;
+    margin-bottom: 0.4cm;
+  }
+  
+  h3 {
+    font-size: 12pt;
+    margin-top: 0.6cm;
+    margin-bottom: 0.3cm;
+  }
+  
+  h4, h5, h6 {
+    font-size: 11pt;
+    margin-top: 0.5cm;
+    margin-bottom: 0.2cm;
+  }
+  
+  p {
+    margin-bottom: 0.4cm;
+    text-align: justify;
+    hyphens: auto;
+  }
+  
+  /* Links */
+  a {
+    color: #3548cf;
+    text-decoration: none;
+    border-bottom: 0.5pt solid #3548cf;
+  }
+  
+  /* ============================================================================
+     Tables for Print
+     ============================================================================ */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5cm 0;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+  
+  th, td {
+    padding: 0.2cm 0.3cm;
+    border: thin solid #000;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  th {
+    background-color: #dae5ec;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f0f4f7;
+  }
+  
+  /* ============================================================================
+     Code Blocks
+     ============================================================================ */
+  .highlight-filename {
+    font-family: monospace;
+    font-size: 9pt;
+    padding: 0.2cm 0.4cm;
+    background-color: #f0f0f0;
+    border: 0.5pt solid #000;
+    border-bottom: none;
+    color: #333;
+  }
+
+  .highlight-wrapper .highlight {
+    margin-top: 0;
+  }
+
+  pre {
+    font-family: monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    padding: 0.4cm;
+    background-color: #dae5ec;
+    border: 0.5pt solid #000;
+    page-break-inside: avoid;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  code {
+    font-family: monospace;
+    font-size: 9pt;
+    background-color: #dae5ec;
+    padding: 0.05cm 0.1cm;
+  }
+  
+  pre code {
+    padding: 0;
+    background: none;
+  }
+
+  /* Inline line numbers (VS Code style: wrap long lines, number on first line only) */
+  .chroma .line .ln {
+    flex-shrink: 0;
+    min-width: 2.5em;
+    padding-right: 0.3cm;
+    color: #666;
+    text-align: right;
+    -webkit-user-select: none;
+    user-select: none;
+    border-right: 0.5pt solid #999;
+    margin-right: 0.3cm;
+  }
+
+  .chroma .line .cl {
+    flex: 1;
+    min-width: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* ============================================================================
+     Figures and Diagrams
+     ============================================================================ */
+  .figure,
+  .diagram {
+    page-break-inside: avoid;
+    margin: 0.8cm 0;
+    padding: 0;
+    background: none;
+    text-align: center;
+  }
+  
+  .figure img,
+  .diagram img,
+  .diagram svg {
+    max-width: 100%;
+    max-height: 18cm;
+    height: auto;
+  }
+
+  /* ============================================================================
+     Zeitplan (Excel Export)
+     ============================================================================ */
+  #zeitplan figure.zeitplan {
+    break-before: page;
+    page-break-before: always;
+    margin: 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Deterministic fit to printable A4 area (margin: 2.5cm 2cm in layouts/pdf/list.html) */
+  #zeitplan figure.zeitplan img {
+    max-width: 170mm; /* 210mm - 2*20mm */
+    max-height: 230mm; /* leaves room for caption + heading */
+    width: auto;
+    height: auto;
+  }
+
+  #zeitplan figure.zeitplan figcaption {
+    margin-top: 0.2cm;
+    font-size: 9pt;
+  }
+  
+  figcaption {
+    font-size: 10pt;
+    color: #595959;
+    margin-top: 0.3cm;
+    text-align: center;
+  }
+  
+  .figure-label,
+  .diagram-label {
+    font-weight: bold;
+  }
+  
+  /* Mermaid diagrams */
+  pre.mermaid,
+  .mermaid {
+    background: #fff;
+    padding: 0.5cm;
+    color: #000;
+    font-family: inherit;
+    line-height: inherit;
+    white-space: normal;
+    overflow: visible;
+  }
+  
+  /* Ensure SVG diagrams print properly */
+  .mermaid svg {
+    max-width: 100%;
+    height: auto;
+    page-break-inside: avoid;
+  }
+  
+  /* ============================================================================
+     Arbeitsjournal (Work Journal)
+     ============================================================================ */
+  #arbeitsjournal .chapter-title-page {
+    min-height: 50vh;
+  }
+
+  /* Each journal day should fit on exactly one page.
+     We enforce "one entry per page" and compact typography so the default
+     template (including the activity table) stays on one A4 page. */
+  .journal-entry {
+    break-before: page;
+    page-break-before: always;
+    break-after: page;
+    page-break-after: always;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .journal-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.5cm;
+    margin-bottom: 0.2cm;
+  }
+
+  .journal-header h3 {
+    margin: 0;
+    font-size: 14pt;
+  }
+
+  .journal-meta {
+    display: flex;
+    gap: 0.35cm;
+    font-size: 9pt;
+    color: #595959;
+    white-space: nowrap;
+  }
+
+  .journal-mood {
+    margin-left: auto;
+    font-size: 9pt;
+    padding: 0.1cm 0.25cm;
+    border: 1px solid #000;
+    background: #dae5ec;
+    white-space: nowrap;
+  }
+
+  .journal-content {
+    font-size: 9.5pt;
+    line-height: 1.25;
+  }
+
+  .journal-content h2 {
+    margin: 0.25cm 0 0.12cm;
+    font-size: 11pt;
+  }
+
+  .journal-content p {
+    margin: 0 0 0.15cm;
+  }
+
+  .journal-content ul,
+  .journal-content ol {
+    margin: 0.15cm 0;
+    padding-left: 0.9cm;
+  }
+
+  .journal-content li {
+    margin-bottom: 0.08cm;
+  }
+
+  /* Journal activity table: fixed layout so all columns stay on-page. */
+  .journal-content table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 8.7pt;
+    margin: 0.15cm 0 0.25cm;
+  }
+
+  .journal-content th,
+  .journal-content td {
+    border: 1px solid #000;
+    padding: 0.12cm 0.18cm;
+    vertical-align: top;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .journal-content thead th {
+    background: #dae5ec;
+    font-weight: bold;
+  }
+
+  /* Column widths for the 5-col Tagesjournal table. */
+  .journal-content th:nth-child(1),
+  .journal-content td:nth-child(1) { width: 22%; }
+  .journal-content th:nth-child(2),
+  .journal-content td:nth-child(2) { width: 18%; }
+  .journal-content th:nth-child(3),
+  .journal-content td:nth-child(3) { width: 10%; }
+  .journal-content th:nth-child(4),
+  .journal-content td:nth-child(4) { width: 10%; }
+  .journal-content th:nth-child(5),
+  .journal-content td:nth-child(5) { width: 40%; }
+  
+  
+  /* ============================================================================
+     Title page alone (titlePageAlone: true) - centered like Teil 1, Teil 2
+     ============================================================================ */
+  .title-page-alone .chapter-title-page {
+    min-height: 50vh;
+  }
+  
+  .glossar-content {
+    columns: 2;
+    column-gap: 1cm;
+    overflow-wrap: break-word;
+  }
+  
+  .glossar-entry {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 0.5cm;
+    padding: 0;
+    background: none;
+    border: none;
+    overflow-wrap: break-word;
+  }
+  
+  .glossar-term {
+    font-weight: bold;
+    font-size: 11pt;
+  }
+  
+  .glossar-definition {
+    font-size: 10pt;
+    color: #595959;
+    margin-left: 0;
+    overflow-wrap: break-word;
+  }
+  
+  /* Force long URLs in glossary to wrap within column bounds */
+  .glossar-definition a {
+    overflow-wrap: anywhere;
+    word-break: break-all;
+  }
+  
+  /* ============================================================================
+     Lists
+     ============================================================================ */
+  ul, ol {
+    margin: 0.3cm 0;
+    padding-left: 1cm;
+  }
+  
+  li {
+    margin-bottom: 0.15cm;
+  }
+  
+  /* Task lists */
+  li input[type="checkbox"] {
+    margin-right: 0.2cm;
+  }
+  
+  /* ============================================================================
+     Blockquotes
+     ============================================================================ */
+  blockquote {
+    margin: 0.5cm 0;
+    padding: 0.3cm 0.5cm;
+    border-left: 2pt solid #000;
+    font-style: italic;
+    color: #000;
+    background: none;
+  }
+  
+  /* ============================================================================
+     Glossary Links (remove tooltips for print)
+     ============================================================================ */
+  .glossary-term {
+    position: static;
+  }
+  
+  .glossary-link {
+    color: #3548cf;
+    border-bottom: none;
+  }
+  
+  .glossary-tooltip {
+    display: none;
+  }
+  
+  /* ============================================================================
+     Hide Elements for Print
+     ============================================================================ */
+  .site-header,
+  .site-footer,
+  .nav-toggle,
+  .page-navigation,
+  .read-more,
+  .no-print {
+    display: none !important;
+  }
+  
+  /* ============================================================================
+     Print-specific utilities
+     ============================================================================ */
+  .print-only {
+    display: block;
+  }
+  
+  .screen-only {
+    display: none;
+  }
+  
+  /* ============================================================================
+     Media Query for Screen (reverse styles when not printing)
+     ============================================================================ */
+  @media screen {
+    .pdf-document {
+      max-width: 21cm;
+      margin: 0 auto;
+      padding: 2cm;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .print-only {
+      display: none;
+    }
+    
+    .screen-only {
+      display: block;
+    }
+  }
