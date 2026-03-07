@@ -42,7 +42,7 @@
   {{- $label := cond (lt $index (len $letters)) (index $letters $index) (printf "%d" (add $index 1)) -}}
   {{- $quellenPath := ($.Site.Params.quellenPath | default "97_verzeichnisse/quellenverzeichnis/") | absURL -}}
 
-  <span class="source-ref-inline">{{ $text }}</span><a href="{{ $quellenPath }}#quelle-{{ $source.id | urlize }}" class="source-ref-marker" title="Quelle {{ $source.id }}"><sup>{{ $label }}</sup></a>
+  <a href="{{ $quellenPath }}#quelle-{{ $source.id | urlize }}" class="source-ref-inline" title="Quelle {{ $source.id }}">{{ $text }}</a><a href="{{ $quellenPath }}#quelle-{{ $source.id | urlize }}" class="source-ref-marker" title="Quelle {{ $source.id }}"><sup>{{ $label }}</sup></a>
 {{- else -}}
   <a href="#{{ $targetId }}" class="internal-ref">{{ $text }}</a>
 {{- end -}}
