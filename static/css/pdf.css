@@ -713,6 +713,53 @@
     margin-left: 0;
     overflow-wrap: break-word;
   }
+
+  .glossar-sources {
+    margin-left: 0.12cm;
+  }
+
+  .glossar-source-ref {
+    text-decoration: none;
+    margin-right: 0.05cm;
+  }
+
+  .source-ref-inline {
+    font-weight: bold;
+  }
+
+  .source-ref-marker {
+    text-decoration: none;
+    margin-left: 0.03cm;
+    font-size: 75%;
+    line-height: 1;
+    vertical-align: super;
+  }
+
+  .quellen-list-used {
+    list-style: decimal;
+  }
+
+  .quellen-entry,
+  .quellen-text {
+    text-align: left;
+  }
+
+  .glossar-referenced-in {
+    margin-top: 0.08cm;
+    font-size: 9pt;
+    color: #595959;
+  }
+
+  .glossar-reference-pointer {
+    text-decoration: none;
+  }
+
+  .glossary-ref-call {
+    margin-left: 0.03cm;
+    font-size: 75%;
+    line-height: 1;
+    vertical-align: super;
+  }
   
   /* Force long URLs in glossary to wrap within column bounds */
   .glossar-definition a {
@@ -763,6 +810,112 @@
   
   .glossary-tooltip {
     display: none;
+  }
+
+  /* ============================================================================
+     Footnotes in PDF
+     ============================================================================ */
+  sup:has(.footnote-ref) {
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+  }
+
+  .footnote-ref {
+    color: #3548cf;
+    border-bottom: none;
+    text-decoration: none;
+  }
+
+  /* Fallback Goldmark endnotes (used when float:footnote is unsupported). */
+  .footnotes {
+    font-size: 9pt;
+    line-height: 1.25;
+    margin-top: 0.2cm;
+  }
+
+  .footnotes hr {
+    margin: 0.15cm 0 0.2cm;
+  }
+
+  .footnotes ol {
+    margin: 0;
+    padding-left: 0.65cm;
+  }
+
+  .footnotes li {
+    margin: 0 0 0.08cm;
+  }
+
+  .footnotes p {
+    margin: 0;
+  }
+
+  .footnote-carrier {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .inline-footnotes-block {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin: 0.08cm 0 0.12cm;
+    font-size: 8.5pt;
+    line-height: 1.2;
+    color: #333;
+  }
+
+  .inline-footnotes {
+    margin: 0;
+    padding-left: 0.6cm;
+  }
+
+  .inline-footnotes li {
+    margin: 0 0 0.04cm;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .inline-footnotes li p {
+    margin: 0;
+  }
+
+  .footnote-carry-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  /* True page-footnotes for paged-media renderers. */
+  .page-footnote {
+    float: footnote;
+    font-size: 8.8pt;
+    line-height: 1.2;
+  }
+
+  .page-footnote p {
+    margin: 0 0 0.06cm;
+  }
+
+  .page-footnote p:last-child {
+    margin-bottom: 0;
+  }
+
+  .page-footnote::footnote-call {
+    content: none;
+  }
+
+  .page-footnote::footnote-marker {
+    content: attr(data-note-id) ". ";
+    font-size: 8.5pt;
+    font-weight: 400;
+  }
+
+  @page {
+    @footnote {
+      border-top: 0.5pt solid #595959;
+      margin-top: 0.08cm;
+      padding-top: 0.12cm;
+    }
   }
   
   /* ============================================================================

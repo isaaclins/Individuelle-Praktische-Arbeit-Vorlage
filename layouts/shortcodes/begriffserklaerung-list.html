@@ -39,6 +39,13 @@
     </dt>
     <dd class="glossar-definition">
       {{ $entry.definition | markdownify }}
+      {{- with $entry.sources -}}
+      <span class="glossar-sources">
+        {{- range . -}}
+        <a href="#quelle-{{ . | urlize }}" class="glossar-source-ref" title="Quelle {{ . }}"><sup>{{ . }}</sup></a>
+        {{- end -}}
+      </span>
+      {{- end -}}
       {{ with $entry.link }}
       <a href="{{ . }}" class="term-link" target="_blank" rel="noopener">Mehr erfahren →</a>
       {{ end }}

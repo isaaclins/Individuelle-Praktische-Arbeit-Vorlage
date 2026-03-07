@@ -4,12 +4,18 @@
   Usage:
     {{< quellenverzeichnis >}}
 
-  Renders the bibliography from data/quellen.yaml, sorted by title.
+  Renders the bibliography from data/quellen.yaml.
+  If inline ref shortcodes were used, sources are shown in first-use order
+  with letter labels (a, b, c, ...). Otherwise, all sources are listed.
 */ -}}
 {{- if .Site.Data.quellen -}}
+{{- $usedRefs := .Site.Store.Get "usedSourceRefs" | default (slice) -}}
 <div class="quellenverzeichnis-content">
-  <ol class="quellen-list">
-    {{- range sort .Site.Data.quellen "titel" -}}
+  <ol class="quellen-list{{ if gt (len $usedRefs) 0 }} quellen-list-used{{ end }}">
+    {{- if gt (len $usedRefs) 0 -}}
+      {{- range $i, $id := $usedRefs -}}
+        {{- range $.Site.Data.quellen -}}
+          {{- if eq .id $id -}}
     <li class="quellen-entry" id="quelle-{{ .id | urlize }}">
       <span class="quellen-text">
         {{- with .Autor }}{{ . }}{{ end -}}
@@ -20,6 +26,22 @@
         {{- with .zugriff }} [Zugriff: {{ . }}]{{ end -}}
       </span>
     </li>
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      {{- range $i, $entry := sort .Site.Data.quellen "titel" -}}
+    <li class="quellen-entry" id="quelle-{{ $entry.id | urlize }}">
+      <span class="quellen-text">
+        {{- with $entry.Autor }}{{ . }}{{ end -}}
+        {{- with $entry.jahr }} ({{ . }}){{ end -}}
+        {{- with $entry.titel }}. <em>{{ . }}</em>{{ end -}}
+        {{- with $entry.verlag }}. {{ . }}{{ end -}}
+        {{- with $entry.url }}. <a href="{{ . }}">{{ . }}</a>{{ end -}}
+        {{- with $entry.zugriff }} [Zugriff: {{ . }}]{{ end -}}
+      </span>
+    </li>
+      {{- end -}}
     {{- end -}}
   </ol>
 </div>
