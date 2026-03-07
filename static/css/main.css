@@ -1010,6 +1010,8 @@
   
   .source-ref-inline {
     font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: underline;
   }
   
   .source-ref-marker {

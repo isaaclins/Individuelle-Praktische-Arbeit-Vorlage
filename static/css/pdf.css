@@ -725,6 +725,9 @@
 
   .source-ref-inline {
     font-weight: bold;
+    color: #3548cf;
+    text-decoration: underline;
+    border-bottom: none;
   }
 
   .source-ref-marker {
